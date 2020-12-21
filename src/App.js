@@ -8,15 +8,15 @@ import ContextProvider from "./contexts/context";
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <ContextProvider>
+      <ContextProvider>
+        <Switch>
           <Route path="/dashboard" component={Dashboard} />
-        </ContextProvider>
-        <Route path="/login" component={Login} />
-        <Route path="/notFound" component={NotFound} />
-        <Redirect from="/" exact to="/dashboard" />
-        <Redirect to="/notFound" />
-      </Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/notFound" component={NotFound} />
+          <Redirect from="/" exact to="/dashboard" />
+          <Redirect to="/notFound" />
+        </Switch>
+      </ContextProvider>
     </div>
   );
 }
