@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
-import imgPlaceholder from "../images/img-placeholder.png";
+import { Context } from "../contexts/context";
 const UserCard = () => {
+  const {
+    avatar_url,
+    name,
+    login,
+    html_url,
+    bio,
+    company,
+    location,
+    blog,
+  } = useContext(Context);
+  //console.log(avatar_url, name, login, html_url, bio, company, location, blog);
   return (
     <Wrapper>
       <header>
-        <img src={imgPlaceholder} alt="name" />
+        <img src={avatar_url} alt="name" />
         <div>
-          <h4>name</h4>
-          <p>john doe</p>
+          <h4>{name}</h4>
+          <p>{login}</p>
         </div>
-        <a href="#">follow</a>
+        <a href={html_url}>follow</a>
       </header>
-      <p className="bio">bio</p>
+      <p className="bio">{bio}</p>
       <div className="links">
         <p>
-          <MdBusiness></MdBusiness> company
+          <MdBusiness></MdBusiness> {company || "company"}
         </p>
         <p>
-          <MdLocationOn></MdLocationOn> earth
+          <MdLocationOn></MdLocationOn> {location || "earth"}
         </p>
-        <a href="#">
-          <MdLink></MdLink>
-          blog
-        </a>
+        {blog && (
+          <a href={`https://${blog}`}>
+            <MdLink></MdLink>
+            {blog}
+          </a>
+        )}
       </div>
     </Wrapper>
   );
