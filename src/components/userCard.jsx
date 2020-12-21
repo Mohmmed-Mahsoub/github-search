@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
 import { Context } from "../contexts/context";
 const UserCard = () => {
+  const { userInfo } = useContext(Context);
   const {
     avatar_url,
     name,
@@ -12,8 +13,8 @@ const UserCard = () => {
     company,
     location,
     blog,
-  } = useContext(Context);
-  //console.log(avatar_url, name, login, html_url, bio, company, location, blog);
+  } = userInfo;
+
   return (
     <Wrapper>
       <header>

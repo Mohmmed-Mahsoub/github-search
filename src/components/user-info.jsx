@@ -5,9 +5,8 @@ import { FiUsers, FiUserPlus } from "react-icons/fi";
 import Item from "./item";
 import { Context } from "../contexts/context";
 const UserInfo = () => {
-  const { followers, public_repos, public_gists, following } = useContext(
-    Context
-  );
+  const { userInfo } = useContext(Context);
+  const { followers, public_repos, public_gists, following } = userInfo;
   const items = [
     {
       id: 1,
