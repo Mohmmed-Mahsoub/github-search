@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { GoRepo, GoGist } from "react-icons/go";
 import { FiUsers, FiUserPlus } from "react-icons/fi";
 import Item from "./item";
+import { Context } from "../contexts/context";
 const UserInfo = () => {
+  const test = useContext(Context);
+  console.log(test);
   const items = [
     {
       id: 1,
