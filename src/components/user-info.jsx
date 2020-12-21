@@ -5,35 +5,36 @@ import { FiUsers, FiUserPlus } from "react-icons/fi";
 import Item from "./item";
 import { Context } from "../contexts/context";
 const UserInfo = () => {
-  const test = useContext(Context);
-  console.log(test);
+  const { followers, public_repos, public_gists, following } = useContext(
+    Context
+  );
   const items = [
     {
       id: 1,
       icon: <GoRepo className="icon" />,
       label: "repos",
-      value: 55,
+      value: public_repos,
       color: "pink",
     },
     {
       id: 2,
       icon: <FiUsers className="icon" />,
       label: "followers",
-      value: 66,
+      value: followers,
       color: "green",
     },
     {
       id: 3,
       icon: <FiUserPlus className="icon" />,
       label: "following",
-      value: 77,
+      value: following,
       color: "purple",
     },
     {
       id: 4,
       icon: <GoGist className="icon" />,
       label: "gists",
-      value: 88,
+      value: public_gists,
       color: "yellow",
     },
   ];

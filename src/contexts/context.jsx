@@ -1,9 +1,9 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
+import mockUserInfo from "./mockData/mockUserInfo";
 export const Context = createContext();
-
 const ContextProvider = (props) => {
-  const test = "test";
-  return <Context.Provider value={test}>{props.children}</Context.Provider>;
+  const [userInfo, setUserInfo] = useState(mockUserInfo);
+  return <Context.Provider value={userInfo}>{props.children}</Context.Provider>;
 };
 
 export default ContextProvider;
