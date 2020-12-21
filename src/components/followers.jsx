@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import imgPlaceholder from "../images/img-placeholder.png";
+import { Context } from "../contexts/context";
 const Followers = () => {
+  const { followers } = useContext(Context);
   return (
     <Wrapper>
       <div className="followers">
-        <article>
-          <img src={imgPlaceholder} alt="login" />
-          <div>
-            <h4>login</h4>
-            <a href="#">html_url</a>
-          </div>
-        </article>
+        {followers.map((follower, index) => {
+          const { avatar_url, login, html_url } = follower;
+          return (
+            <article key={index}>
+              <img src={avatar_url} alt="login" />
+              <div>
+                <h4>{login}</h4>
+                <a href={html_url}>{html_url}</a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Wrapper>
   );
