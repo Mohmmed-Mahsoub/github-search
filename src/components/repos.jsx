@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Context } from "../contexts/context";
 import LanguagesChart from "./charts/languagesChart";
 import MostForkedChart from "./charts/mostForkedChart";
 import MostPopularChart from "./charts/mostPopularChart";
 import StarsChart from "./charts/starsChart";
 const Repos = () => {
+  const { repos } = useContext(Context);
+  console.log(repos);
   return (
     <section className="section">
       <Wrapper className="section-center">
