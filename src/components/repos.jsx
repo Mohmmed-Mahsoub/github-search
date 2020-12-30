@@ -61,7 +61,6 @@ const Repos = () => {
   so you want just the value from each obj >> Object.values(languages) (but this puting these in array so you should destricting them >> ...Object.values(languages))
   then take the top five valuse using sort() and slice()
   */
-  console.log(languagesAndStart);
 
   //language data (replace the hard coded data with the data you got it from repo)
   const chartLanguagesData = [...Object.values(languagesAndStart)]
@@ -79,7 +78,20 @@ const Repos = () => {
       return { ...item, value: item.stars };
     })
     .slice(0, 5);
-  console.log(starsPerLanguage, chartLanguagesData);
+
+  //most popular chart data
+  const mostPopular = repos.reduce((accumulator, currentValue) => {
+    const { stargazers_count, name } = currentValue;
+    accumulator[name] = { label: name, value: stargazers_count };
+    return accumulator;
+  }, {});
+  //deffirent way to rearange data to get the top five
+  const starsPerRepo = [...Object.values(mostPopular)]
+    .sort((a, b) => {
+      return a.value - b.value;
+    })
+    .slice(-5)
+    .reverse();
 
   const chartData = [
     {
@@ -100,7 +112,7 @@ const Repos = () => {
     <section className="section">
       <Wrapper className="section-center">
         <LanguagesChart data={chartLanguagesData} />
-        <MostPopularChart />
+        <MostPopularChart data={starsPerRepo} />
         <StarsChart data={starsPerLanguage} />
         <MostForkedChart />
       </Wrapper>
