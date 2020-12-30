@@ -34,6 +34,7 @@ const MostPopularChart = ({ data }) => {
         xAxisName: "Repos",
         //Set the y-axis name
         yAxisName: "Stars",
+        showvalues: "1",
         //Set the theme for your chart
         theme: "fusion",
       },
