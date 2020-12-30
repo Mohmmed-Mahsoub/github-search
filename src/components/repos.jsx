@@ -80,41 +80,36 @@ const Repos = () => {
     .slice(0, 5);
 
   //most popular chart data
-  const mostPopular = repos.reduce((accumulator, currentValue) => {
-    const { stargazers_count, name } = currentValue;
-    accumulator[name] = { label: name, value: stargazers_count };
-    return accumulator;
-  }, {});
+  const { stars, forks } = repos.reduce(
+    (accumulator, currentValue) => {
+      const { stargazers_count, name, forks_count } = currentValue;
+      accumulator.stars[name] = { label: name, value: stargazers_count };
+      accumulator.forks[name] = { label: name, value: forks_count };
+      return accumulator;
+    },
+    { stars: {}, forks: {} }
+  );
+
   //deffirent way to rearange data to get the top five
-  const starsPerRepo = [...Object.values(mostPopular)]
+  const starsPerRepo = [...Object.values(stars)]
     .sort((a, b) => {
       return a.value - b.value;
     })
     .slice(-5)
     .reverse();
-
-  const chartData = [
-    {
-      label: "Venezuela",
-      stars: "20",
-      value: "290",
-    },
-    {
-      label: "Saudi",
-      value: "260",
-    },
-    {
-      label: "Canada",
-      value: "180",
-    },
-  ];
+  const forksPerRepo = [...Object.values(forks)]
+    .sort((a, b) => {
+      return a.value - b.value;
+    })
+    .slice(-5)
+    .reverse();
   return (
     <section className="section">
       <Wrapper className="section-center">
         <LanguagesChart data={chartLanguagesData} />
         <MostPopularChart data={starsPerRepo} />
         <StarsChart data={starsPerLanguage} />
-        <MostForkedChart />
+        <MostForkedChart data={forksPerRepo} />
       </Wrapper>
     </section>
   );
