@@ -7,15 +7,17 @@ const Search = () => {
   const handleChange = (userValue) => {
     setUser(userValue);
   };
-  const { fetchDataForNewUser } = useContext(Context);
+  const { fetchDataForNewUser, message } = useContext(Context);
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchDataForNewUser(user);
-    //console.log(user);
   };
+
   return (
     <section className="section">
       <Wrapper className="section-center">
+        {message.show && <div style={{ color: "red" }}>{message.ms}</div>}
+
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <FaSearch />
