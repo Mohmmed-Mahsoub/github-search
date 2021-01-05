@@ -7,8 +7,14 @@ const ContextProvider = (props) => {
   const [userInfo, setUserInfo] = useState(mockUserInfo);
   const [followers, setFollowers] = useState(mockFollower);
   const [repos, setRepos] = useState(mockRepos);
+  const fetchDataForNewUser = (x) => {
+    console.log(x);
+  };
+
   return (
-    <Context.Provider value={{ userInfo, followers, repos }}>
+    <Context.Provider
+      value={{ userInfo, followers, repos, fetchDataForNewUser }}
+    >
       {props.children}
     </Context.Provider>
   );

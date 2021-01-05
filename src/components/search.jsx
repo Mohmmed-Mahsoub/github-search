@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { Context } from "../contexts/context";
 const Search = () => {
+  const [user, setUser] = useState("");
+  const handleChange = (userValue) => {
+    setUser(userValue);
+  };
+  const { fetchDataForNewUser } = useContext(Context);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchDataForNewUser(user);
+    //console.log(user);
+  };
   return (
     <section className="section">
       <Wrapper className="section-center">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-control">
             <FaSearch />
-            <input type="text" placeholder="enter github user" />
+            <input
+              value={user}
+              onChange={(e) => handleChange(e.target.value)}
+              type="text"
+              placeholder="enter github user"
+            />
 
             <button type="submit">search</button>
           </div>
