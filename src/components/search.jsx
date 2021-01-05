@@ -7,7 +7,7 @@ const Search = () => {
   const handleChange = (userValue) => {
     setUser(userValue);
   };
-  const { fetchDataForNewUser, message } = useContext(Context);
+  const { fetchDataForNewUser, message, requests } = useContext(Context);
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchDataForNewUser(user);
@@ -28,10 +28,10 @@ const Search = () => {
               placeholder="enter github user"
             />
 
-            <button type="submit">search</button>
+            {requests !== 0 && <button type="submit">search</button>}
           </div>
         </form>
-        <h3>requests : 60 / 60</h3>
+        <h3>requests : {requests} / 60</h3>
       </Wrapper>
     </section>
   );
