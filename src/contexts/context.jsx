@@ -9,6 +9,7 @@ const ContextProvider = (props) => {
   const [followers, setFollowers] = useState(mockFollower);
   const [repos, setRepos] = useState(mockRepos);
   const [requests, setRequests] = useState("50");
+  const [isLoaing, setisLoaing] = useState("");
   const [message, setMessage] = useState({ show: false, ms: "" });
   const checkRequests = async () => {
     try {
@@ -29,11 +30,14 @@ const ContextProvider = (props) => {
     }
   };
   //check Requests when app loaded
-  useEffect(checkRequests, []);
+  useEffect(() => {
+    checkRequests();
+  }, []);
 
   const fetchDataForNewUser = async (user) => {
     try {
       setMessage({ show: false, ms: "" });
+      setisLoaing("true");
       const { data } = await axios.get(`https://api.github.com/users/${user}`);
       setUserInfo(data);
       checkRequests();
@@ -44,6 +48,7 @@ const ContextProvider = (props) => {
       const { repos_url } = data;
       const repos = await axios.get(repos_url);
       setRepos(repos.data);
+      setisLoaing("");
     } catch (error) {
       setMessage({ show: true, ms: "user not exist" });
     }
@@ -58,6 +63,7 @@ const ContextProvider = (props) => {
         fetchDataForNewUser,
         message,
         requests,
+        isLoaing,
       }}
     >
       {props.children}
