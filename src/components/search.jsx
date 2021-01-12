@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   display: grid;
   gap: 1rem 1.75rem;
   @media (min-width: 768px) {
-    grid-template-columns: 1fr max-content;
+    /* grid-template-columns: 1fr max-content; */
     align-items: center;
     h3 {
       padding: 0 0.5rem;
