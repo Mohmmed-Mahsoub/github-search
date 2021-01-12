@@ -37,6 +37,13 @@ const ContextProvider = (props) => {
       const { data } = await axios.get(`https://api.github.com/users/${user}`);
       setUserInfo(data);
       checkRequests();
+      const { followers_url } = data;
+      const followers = await axios.get(followers_url);
+      setFollowers(followers.data);
+
+      const { repos_url } = data;
+      const repos = await axios.get(repos_url);
+      setRepos(repos.data);
     } catch (error) {
       setMessage({ show: true, ms: "user not exist" });
     }
