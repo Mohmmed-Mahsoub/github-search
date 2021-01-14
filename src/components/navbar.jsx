@@ -2,16 +2,37 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import imgPlaceholder from "../images/img-placeholder.png";
+import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
+  const {
+    isAuthenticated,
+    logout,
+    user,
+    loginWithRedirect,
+    isLoading,
+    loginWithPopup,
+  } = useAuth0();
+  console.log({ isAuthenticated, logout, user, loginWithRedirect, isLoading });
+
   return (
     <Wrapper>
-      <img src={imgPlaceholder} alt="user name" />
-
-      <h4>
-        Welcome, <strong>user name</strong>
-      </h4>
-
-      <Link to="/login">logout</Link>
+      {isAuthenticated && <img src={user.picture} alt="user pic" />}
+      {isAuthenticated && (
+        <h4>
+          Welcome, <strong>{user.name}</strong>
+        </h4>
+      )}
+      {isAuthenticated ? (
+        <button
+          onClick={() => {
+            logout({ returnTo: window.location.origin });
+          }}
+        >
+          logout
+        </button>
+      ) : (
+        <button onClick={loginWithPopup}>Log In</button>
+      )}
     </Wrapper>
   );
 };
@@ -35,7 +56,7 @@ const Wrapper = styled.nav`
     border-radius: 50%;
     object-fit: cover;
   }
-  a {
+  button {
     background: transparent;
     border: transparent;
     font-size: 1.2rem;
