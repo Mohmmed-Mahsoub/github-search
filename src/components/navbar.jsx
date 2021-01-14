@@ -10,7 +10,6 @@ const Navbar = () => {
     isLoading,
     loginWithPopup,
   } = useAuth0();
-  console.log({ isAuthenticated, logout, user, loginWithRedirect, isLoading });
 
   return (
     <Wrapper>
@@ -29,7 +28,7 @@ const Navbar = () => {
           logout
         </button>
       ) : (
-        <button onClick={loginWithPopup}>Log In</button>
+        <button onClick={loginWithRedirect}>Log In</button>
       )}
     </Wrapper>
   );

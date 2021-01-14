@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 
 import { Auth0Provider } from "@auth0/auth0-react";
+import AuthWrapper from "./pages/authWeapper";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       redirectUri={window.location.origin}
     >
       <BrowserRouter>
-        <App />
+        <AuthWrapper>
+          <App />
+        </AuthWrapper>
       </BrowserRouter>
     </Auth0Provider>
   </React.StrictMode>,
