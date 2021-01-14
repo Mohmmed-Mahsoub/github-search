@@ -4,7 +4,6 @@ import loginImg from "../images/login-img.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 const Login = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
-  console.log(isAuthenticated);
   return (
     <Wrapper>
       <div className="container">

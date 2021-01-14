@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Loader from "./../components/loader";
 function AuthWrapper({ children }) {
   const { isLoading, error } = useAuth0();
-  console.log(children);
   if (isLoading) {
     return <Loader />;
   }
